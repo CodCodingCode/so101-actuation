@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "note": "Overhead: InnoMaker 32x32 UVC module on TheRobotStudio overhead post mount, CALIBRATED to the real rig on 2026-11-10 (see cameras.overhead.calibration_status). Wrists: unchanged nominal entries (not calibrated). the old straight-down Arducam overhead is so101_camera_rig.arducam_nominal.json.",
+  "cameras": {
+    "overhead": {
+      "hardware_model": "InnoMaker U20CAM-720P USB 2.0 UVC module (32x32 mm, OV9732, M12 lens, 120 deg DFOV / 102 deg HFOV at 1280x720)",
+      "calibration_status": "calibrated 2026-11-10 against the real rig: lens (fx=fy, cx, cy, k1, k2) fitted on 260 robot-driven overhead frames with the mount pose held at the TheRobotStudio CAD pose (232 mm arms, deployed rig.json joint offsets); held-out arm-silhouette IoU 0.384 vs 0.239 for the CAD lens. Fit: sim/rig_tools/fit_camera_only.py",
+      "width": 640,
+      "height": 480,
+      "fps": 30,
+      "rotation": 0,
+      "intrinsics": {
+        "fx": 610.7,
+        "fy": 610.7,
+        "cx": 285.1,
+        "cy": 242.2
+      },
+      "distortion": [
+        -0.9328,
+        0.9382,
+        0,
+        0,
+        0
+      ],
+      "pose": {
+        "parent_body": "world",
+        "pos": [
+          0.0,
+          -0.1857,
+          0.5371
+        ],
+        "quat_wxyz": [
+          0.97672,
+          0.21452,
+          0.0,
+          0.0
+        ]
+      },
+      "optics_note": "Fitted pinhole + OpenCV radial distortion (k1, k2). The CAD/lens-spec stand-in was fx=fy=417, no distortion, pos (0, -0.1857, 0.5371), tilt 24.8 deg; the fit puts the optical centre ~4 cm higher with a wider field and real barrel distortion. (Fit units converted to the sim's focal-pixel camera on 2026-11-10: f 246.1 at the fitter's assumed render focal -> 610.7 px; k1/k2 rescaled accordingly.)",
+      "reference_url": "https://thepihut.com/products/arducam-12mp-imx708-usb-c-uvc-fixed-focus-camera-module",
+      "mount": {
+        "design": "TheRobotStudio SO-ARM100 Optional/Overhead_Cam_Mount_32x32_UVC_Module (arm_base + cam_mount_bottom/middle/top)",
+        "post_axis_xy": [
+          0.0,
+          -0.222
+        ],
+        "post_section_m": [
+          0.0366,
+          0.0254
+        ],
+        "post_top_z": 0.5605,
+        "derivation": "STL stack: bottom shoulder 223.25 mm, middle/top offset 188.25 mm; camera plate underside 550.7 mm at the lens hole, tilted 24.8 deg forward (plate normal 0.42,-0.91); optical centre taken 15 mm beyond the plate along the view axis -> 36.3 mm forward of the post axis, 537 mm above the table. Post axis 22.6 mm behind each arm's footprint centre, centred between the arms. Arms sit on the mount's arm_base plates, 232 mm apart (scene.ARM_X)."
+      }
+    },
+    "left_wrist": {
+      "hardware_model": "Arducam 12MP IMX708 USB UVC autofocus camera module (B030401, 75-degree diagonal lens)",
+      "calibration_status": "nominal",
+      "width": 640,
+      "height": 480,
+      "fps": 30,
+      "rotation": 0,
+      "intrinsics": {
+        "fx": 543.2521981843486,
+        "fy": 543.2521981843486,
+        "cx": 320,
+        "cy": 240
+      },
+      "distortion": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "pose": {
+        "parent_body": "left_camera_mount",
+        "pos": [
+          -0.00296,
+          0.05436,
+          -0.0531
+        ],
+        "quat_wxyz": [
+          0.95828,
+          -0.285792,
+          -0.001556,
+          0.004547
+        ]
+      },
+      "optics_note": "Arducam B030401: Sony IMX708 (Raspberry Pi Camera Module 3 sensor) on a USB 2.0 UVC adapter, autofocus 10 cm to infinity, 75-degree diagonal lens listed as 61 degrees horizontal and 50 degrees vertical, 32x32 mm board. Nominal pinhole from the 61-degree horizontal figure at 640x480 (vertical then 47.8 degrees). Distortion coefficients are unmeasured zero placeholders; autofocus changes the effective focal length slightly with focus distance, so calibrate each unit at its working focus. Mount poses are nominal.",
+      "reference_url": "https://thepihut.com/products/arducam-12mp-imx708-usb-c-uvc-fixed-focus-camera-module"
+    },
+    "right_wrist": {
+      "hardware_model": "Arducam 12MP IMX708 USB UVC autofocus camera module (B030401, 75-degree diagonal lens)",
+      "calibration_status": "nominal",
+      "width": 640,
+      "height": 480,
+      "fps": 30,
+      "rotation": 0,
+      "intrinsics": {
+        "fx": 543.2521981843486,
+        "fy": 543.2521981843486,
+        "cx": 320,
+        "cy": 240
+      },
+      "distortion": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "pose": {
+        "parent_body": "right_camera_mount",
+        "pos": [
+          -0.00296,
+          0.05436,
+          -0.0531
+        ],
+        "quat_wxyz": [
+          0.95828,
+          -0.285792,
+          -0.001556,
+          0.004547
+        ]
+      },
+      "optics_note": "Arducam B030401: Sony IMX708 (Raspberry Pi Camera Module 3 sensor) on a USB 2.0 UVC adapter, autofocus 10 cm to infinity, 75-degree diagonal lens listed as 61 degrees horizontal and 50 degrees vertical, 32x32 mm board. Nominal pinhole from the 61-degree horizontal figure at 640x480 (vertical then 47.8 degrees). Distortion coefficients are unmeasured zero placeholders; autofocus changes the effective focal length slightly with focus distance, so calibrate each unit at its working focus. Mount poses are nominal.",
+      "reference_url": "https://thepihut.com/products/arducam-12mp-imx708-usb-c-uvc-fixed-focus-camera-module"
+    }
+  }
+}

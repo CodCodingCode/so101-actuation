@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "note": "Three identical Arducam B030401 IMX708 USB autofocus modules: one overhead on a gantry looking straight down from 0.70 m, one on each follower's Menagerie wrist-roll camera mount. Native capture 640x480 at 30 fps. The overhead view plays the paper's base-camera role; there is no front camera in this rig.",
+  "cameras": {
+    "overhead": {
+      "hardware_model": "Arducam 12MP IMX708 USB UVC autofocus camera module (B030401, 75-degree diagonal lens)",
+      "calibration_status": "nominal",
+      "width": 640,
+      "height": 480,
+      "fps": 30,
+      "rotation": 0,
+      "intrinsics": {
+        "fx": 543.2521981843486,
+        "fy": 543.2521981843486,
+        "cx": 320,
+        "cy": 240
+      },
+      "distortion": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "pose": {
+        "parent_body": "world",
+        "pos": [
+          0,
+          -0.03,
+          0.7
+        ],
+        "quat_wxyz": [
+          1,
+          0,
+          0,
+          0
+        ]
+      },
+      "optics_note": "Arducam B030401: Sony IMX708 (Raspberry Pi Camera Module 3 sensor) on a USB 2.0 UVC adapter, autofocus 10 cm to infinity, 75-degree diagonal lens listed as 61 degrees horizontal and 50 degrees vertical, 32x32 mm board. Nominal pinhole from the 61-degree horizontal figure at 640x480 (vertical then 47.8 degrees). Distortion coefficients are unmeasured zero placeholders; autofocus changes the effective focal length slightly with focus distance, so calibrate each unit at its working focus. Mount poses are nominal.",
+      "reference_url": "https://thepihut.com/products/arducam-12mp-imx708-usb-c-uvc-fixed-focus-camera-module"
+    },
+    "left_wrist": {
+      "hardware_model": "Arducam 12MP IMX708 USB UVC autofocus camera module (B030401, 75-degree diagonal lens)",
+      "calibration_status": "nominal",
+      "width": 640,
+      "height": 480,
+      "fps": 30,
+      "rotation": 0,
+      "intrinsics": {
+        "fx": 543.2521981843486,
+        "fy": 543.2521981843486,
+        "cx": 320,
+        "cy": 240
+      },
+      "distortion": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "pose": {
+        "parent_body": "left_camera_mount",
+        "pos": [
+          -0.00296,
+          0.05436,
+          -0.0531
+        ],
+        "quat_wxyz": [
+          0.95828,
+          -0.285792,
+          -0.001556,
+          0.004547
+        ]
+      },
+      "optics_note": "Arducam B030401: Sony IMX708 (Raspberry Pi Camera Module 3 sensor) on a USB 2.0 UVC adapter, autofocus 10 cm to infinity, 75-degree diagonal lens listed as 61 degrees horizontal and 50 degrees vertical, 32x32 mm board. Nominal pinhole from the 61-degree horizontal figure at 640x480 (vertical then 47.8 degrees). Distortion coefficients are unmeasured zero placeholders; autofocus changes the effective focal length slightly with focus distance, so calibrate each unit at its working focus. Mount poses are nominal.",
+      "reference_url": "https://thepihut.com/products/arducam-12mp-imx708-usb-c-uvc-fixed-focus-camera-module"
+    },
+    "right_wrist": {
+      "hardware_model": "Arducam 12MP IMX708 USB UVC autofocus camera module (B030401, 75-degree diagonal lens)",
+      "calibration_status": "nominal",
+      "width": 640,
+      "height": 480,
+      "fps": 30,
+      "rotation": 0,
+      "intrinsics": {
+        "fx": 543.2521981843486,
+        "fy": 543.2521981843486,
+        "cx": 320,
+        "cy": 240
+      },
+      "distortion": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "pose": {
+        "parent_body": "right_camera_mount",
+        "pos": [
+          -0.00296,
+          0.05436,
+          -0.0531
+        ],
+        "quat_wxyz": [
+          0.95828,
+          -0.285792,
+          -0.001556,
+          0.004547
+        ]
+      },
+      "optics_note": "Arducam B030401: Sony IMX708 (Raspberry Pi Camera Module 3 sensor) on a USB 2.0 UVC adapter, autofocus 10 cm to infinity, 75-degree diagonal lens listed as 61 degrees horizontal and 50 degrees vertical, 32x32 mm board. Nominal pinhole from the 61-degree horizontal figure at 640x480 (vertical then 47.8 degrees). Distortion coefficients are unmeasured zero placeholders; autofocus changes the effective focal length slightly with focus distance, so calibrate each unit at its working focus. Mount poses are nominal.",
+      "reference_url": "https://thepihut.com/products/arducam-12mp-imx708-usb-c-uvc-fixed-focus-camera-module"
+    }
+  }
+}

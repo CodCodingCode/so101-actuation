@@ -1,0 +1,78 @@
+{
+ "source": "2026-11-10 rig sysid (rig_tools/dyn_test.py + fit_dynamics_tc.py): 50 Hz scripted steps, sines, gravity holds and gripper moves on both real arms; fitted on the left arm, right arm held out.",
+ "rms_deg_stock": {
+  "left": 1.7914132340138607
+ },
+ "rms_deg_fitted": {
+  "left": 0.5172577856115508,
+  "right_heldout": 0.5367882385648033
+ },
+ "per_joint_rms": {
+  "left": [
+   0.328,
+   0.461,
+   0.95,
+   0.508,
+   0.28,
+   0.723
+  ],
+  "right_heldout": [
+   0.333,
+   0.533,
+   0.896,
+   0.576,
+   0.381,
+   0.779
+  ]
+ },
+ "joints": {
+  "shoulder_pan": {
+   "kp": 244.6614143597767,
+   "kv": 15.048434461421442,
+   "forcerange": 0.7477375070006564,
+   "frictionloss": 0.03444446437492848,
+   "armature": 0.010192448100573006,
+   "timeconst": 0.040375326013111196
+  },
+  "shoulder_lift": {
+   "kp": 27.354127294238268,
+   "kv": 2.007399329907934,
+   "forcerange": 1.9547193929541729,
+   "frictionloss": 0.307980173829634,
+   "armature": 0.07470061689576923,
+   "timeconst": 0.009769141621770035
+  },
+  "elbow_flex": {
+   "kp": 20.718305839549828,
+   "kv": 1.1061096280888087,
+   "forcerange": 1.451751076912712,
+   "frictionloss": 0.3494227945570631,
+   "armature": 0.007178704326209341,
+   "timeconst": 0.019633692763956097
+  },
+  "wrist_flex": {
+   "kp": 398.6847774815687,
+   "kv": 36.25821105020704,
+   "forcerange": 1.2681647013679511,
+   "frictionloss": 0.17593976652398696,
+   "armature": 0.06107257278171154,
+   "timeconst": 0.012956632308475487
+  },
+  "wrist_roll": {
+   "kp": 77.95038131211479,
+   "kv": 5.546306139771424,
+   "forcerange": 0.5823589363886403,
+   "frictionloss": 0.012125192323773367,
+   "armature": 0.0020863383614233484,
+   "timeconst": 0.028079920831408645
+  },
+  "gripper": {
+   "kp": 128.4696232945081,
+   "kv": 13.304352540968248,
+   "forcerange": 1.3205715761096652,
+   "frictionloss": 0.03842138124426338,
+   "armature": 0.0698712806453154,
+   "timeconst": 0.02940716895473927
+  }
+ }
+}
