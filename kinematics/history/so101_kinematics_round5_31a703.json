@@ -1,0 +1,33 @@
+{
+ "status": "VALIDATED 2026-11-13, round 5 (calibration tag 31a703 = cameras/refit/so101_camera_rig.refit_2026-11-13_6349a0.json + these kinematics). Fitted on the torque-ON live runs with the jaw-aware fast projector (round 4's projector dropped every frame whose cube sat partly behind the gripper jaws: 38/105 left, 6/105 right). sim joint = logged reading + joint_offsets_deg (on top of rig.json joint_offsets_deg, i.e. the runner's current units); pedestal_shift_cm added to model.body_pos of <side>_pedestal (world frame). Same format as sim-e5's rig_cube_check --kinematics and pi_sim PI_SIM_KINEMATICS. Round 4 (tag 6349a0) kept in kinematics_refit.bak_round4_6349a0.json.",
+ "left": {
+  "joint_offsets_deg": [
+   -1.499,
+   -1.293,
+   -1.06,
+   -0.579,
+   -0.68
+  ],
+  "pedestal_shift_cm": [
+   -0.269,
+   -0.51,
+   0.587
+  ]
+ },
+ "right": {
+  "joint_offsets_deg": [
+   0.698,
+   1.738,
+   0.638,
+   3.092,
+   0.078
+  ],
+  "pedestal_shift_cm": [
+   0.965,
+   -1.083,
+   0.272
+  ]
+ },
+ "rig_file": "cameras/refit/so101_camera_rig.refit_2026-11-13_6349a0.json",
+ "tag": "31a703"
+}

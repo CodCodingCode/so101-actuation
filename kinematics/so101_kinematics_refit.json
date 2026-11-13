@@ -1,0 +1,33 @@
+{
+ "status": "VALIDATED 2026-11-13, round 6 (calibration tag bb1b28 = cameras/refit/so101_camera_rig.refit_2026-11-13_6349a0.json + these kinematics). Joint offsets only: the pedestal shifts are pinned at 0. Round 5's pedestal shifts (up to 1.4 cm) fixed the wrist views but displaced the arm bases in the overhead (edge chamfer worse in 98-100% of the 11-12 live frames; confirmed independently by the 2026-11-13 pipeline audit); its joint offsets were neutral there. Values = the mean of the two held-out-validated half fits (the all-data fit lands in a different basin of a degenerate valley). sim joint = logged reading + joint_offsets_deg (on top of rig.json joint_offsets_deg, i.e. the runner's current units). Training sims use no pedestal shift. Round 5 kept in kinematics_refit.bak_round5_31a703.json, round 4 in kinematics_refit.bak_round4_6349a0.json.",
+ "left": {
+  "joint_offsets_deg": [
+   -0.889,
+   -3.424,
+   -0.138,
+   0.059,
+   -0.714
+  ],
+  "pedestal_shift_cm": [
+   0.0,
+   0.0,
+   0.0
+  ]
+ },
+ "right": {
+  "joint_offsets_deg": [
+   1.15,
+   0.621,
+   4.433,
+   3.043,
+   1.214
+  ],
+  "pedestal_shift_cm": [
+   0.0,
+   0.0,
+   0.0
+  ]
+ },
+ "rig_file": "cameras/refit/so101_camera_rig.refit_2026-11-13_6349a0.json",
+ "tag": "bb1b28"
+}

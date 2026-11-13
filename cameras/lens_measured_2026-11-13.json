@@ -1,0 +1,94 @@
+{
+ "schema_note": "Lens-only (intrinsics + OpenCV k1,k2,p1,p2,k3) for the three SO-101 cameras, in the same field layout as so101_camera_rig*.json cameras.<name>.intrinsics / .distortion, so it can be dropped into a rig file. NO mount pose here: the wrist poses in the existing rig files were fitted with the old (wrong, pincushion) lenses and must be refitted with these lenses before use in sim.",
+ "measured": "2026-11-13 on dzkchen, ChArUco 9x6 squares, DICT_5X5_100, shown full screen on a laptop; captures from molmo_runner 'Calibration capture'; 640x480 MJPG via DirectShow (the runner's live mode). cv2.calibrateCamera 5-coefficient model.",
+ "hardware_model": "InnoMaker U20CAM-1080P-S1 (all three rig cameras per user); 640x480 is the centre 4:3 crop of the 1080p sensor",
+ "cameras": {
+  "left_wrist": {
+   "width": 640,
+   "height": 480,
+   "intrinsics": {
+    "fx": 540.27,
+    "fy": 538.2,
+    "cx": 310.08,
+    "cy": 250.53
+   },
+   "distortion": [
+    -0.4471,
+    0.26909,
+    -0.00079,
+    0.0006,
+    -0.10492
+   ],
+   "rms_reprojection_px": 0.202,
+   "frames": 45,
+   "captures": [
+    "calib_20261113_054958",
+    "calib_20261113_055342"
+   ],
+   "fit_note": "tuned ArUco detection + gamma retry; half-split spread fx +-7 px, k1 +-0.008. Another fit of the same captures by inference-testing-04 (21 views, default detection) gave fx 527.4, cx 301.4, cy 256.2, dist [-0.442, 0.286, -0.004, 0.004, -0.115]: same lens, fx ~2.4% lower."
+  },
+  "right_wrist": {
+   "width": 640,
+   "height": 480,
+   "intrinsics": {
+    "fx": 546.66,
+    "fy": 544.74,
+    "cx": 331.84,
+    "cy": 246.28
+   },
+   "distortion": [
+    -0.45355,
+    0.28314,
+    0.00031,
+    -0.00076,
+    -0.10492
+   ],
+   "rms_reprojection_px": 0.22,
+   "frames": 17,
+   "captures": [
+    "calib_20261113_055734"
+   ],
+   "fit_note": "17 views, poor coverage of the left/bottom of the image: initialised from the left lens and k3 held at the left value. Every right frame fits the LEFT lens at 0.17-0.62 px, i.e. same lens type. Half-split spread fx +-7 px, k1 +-0.009."
+  },
+  "overhead": {
+   "status": "GOOD (focal length + centre measured; distortion inherited from the wrists)",
+   "width": 640,
+   "height": 480,
+   "intrinsics": {
+    "fx": 544.6,
+    "fy": 544.6,
+    "cx": 282.4,
+    "cy": 242.9
+   },
+   "distortion": [
+    -0.450325,
+    0.276115,
+    -0.00024,
+    -8e-05,
+    -0.10492
+   ],
+   "rms_reprojection_px": 0.106,
+   "heldout_reprojection_px": 0.091,
+   "frames": 85,
+   "captures": [
+    "calib_20261113_070544"
+   ],
+   "fit_note": "By inference-testing-04 from a 300-frame every-frame board capture (85 views with >= 12 corners). Distortion fixed to the mean of the measured left/right wrist lenses (same model): the bottom third of the overhead image had no board corners, so a free fit diverged (fx 1167). fx = fy, centre free; fx 543.6-545.2 across 3 folds. Fixing the centre at the image middle fits clearly worse (0.37 px). Replaces the provisional 0a fit (fx 571, 13 top-half views). Raw file: lens_raw/lens_overhead_2026-11-13_070544.json."
+  }
+ },
+ "field_of_view_deg_at_640x480": {
+  "left_wrist": {
+   "centre_h": 61.3,
+   "edge_to_edge_h": 71.1,
+   "edge_to_edge_v": 52.3
+  },
+  "right_wrist": {
+   "edge_to_edge_h": 70.1,
+   "edge_to_edge_v": 51.7
+  },
+  "overhead": {
+   "edge_to_edge_h": 70.6,
+   "edge_to_edge_v": 51.7
+  }
+ }
+}

@@ -1,0 +1,439 @@
+{
+ "status": "refit filled 2026-11-13 (validated, tag 6349a0); best_so_far kept for history",
+ "frame_convention": "pos in metres, quat_wxyz, relative to parent_body in the pi_sim SO-101 model (same as so101_camera_rig.json)",
+ "current": {
+  "overhead": {
+   "parent_body": "world",
+   "pos": [
+    -0.00182,
+    -0.19068,
+    0.52908
+   ],
+   "quat_wxyz": [
+    0.976551,
+    0.214204,
+    0.004384,
+    0.021144
+   ],
+   "fitted_with_lens": {
+    "fx": 612.57,
+    "distortion": [
+     -0.9328,
+     0.9382,
+     0,
+     0,
+     0
+    ]
+   },
+   "calibration_status": "calibrated 2026-11-10: lens by sim-e5 (fit232), pose+focal by rigfit SAM-mask fit on 4 robot-driven runs (held-out IoU 0.638)"
+  },
+  "left_wrist": {
+   "parent_body": "left_camera_mount",
+   "pos": [
+    -0.00462,
+    0.05805,
+    -0.05423
+   ],
+   "quat_wxyz": [
+    0.958997,
+    -0.281068,
+    -0.00176,
+    0.036372
+   ],
+   "fitted_with_lens": {
+    "fx": 465.64,
+    "distortion": [
+     0.1854,
+     -0.0959,
+     0,
+     0,
+     0
+    ]
+   },
+   "calibration_status": "calibrated 2026-11-10 by rigfit wrist fit (gripper-jaw SAM masks, held-out IoU 0.823)"
+  },
+  "right_wrist": {
+   "parent_body": "right_camera_mount",
+   "pos": [
+    -0.00795,
+    0.058,
+    -0.05128
+   ],
+   "quat_wxyz": [
+    0.951794,
+    -0.281265,
+    0.078169,
+    0.094173
+   ],
+   "fitted_with_lens": {
+    "fx": 501.82,
+    "distortion": [
+     0.2211,
+     0.0025,
+     0,
+     0,
+     0
+    ]
+   },
+   "calibration_status": "calibrated 2026-11-10 by rigfit wrist fit (gripper-jaw SAM masks, held-out IoU 0.77)"
+  }
+ },
+ "overhead_mount": {
+  "design": "TheRobotStudio SO-ARM100 Optional/Overhead_Cam_Mount_32x32_UVC_Module (arm_base + cam_mount_bottom/middle/top)",
+  "post_axis_xy": [
+   0.0,
+   -0.222
+  ],
+  "post_section_m": [
+   0.0366,
+   0.0254
+  ],
+  "post_top_z": 0.5605,
+  "derivation": "STL stack: bottom shoulder 223.25 mm, middle/top offset 188.25 mm; camera plate underside 550.7 mm at the lens hole, tilted 24.8 deg forward (plate normal 0.42,-0.91); optical centre taken 15 mm beyond the plate along the view axis -> 36.3 mm forward of the post axis, 537 mm above the table. Post axis 22.6 mm behind each arm's footprint centre, centred between the arms. Arms sit on the mount's arm_base plates, 232 mm apart (scene.ARM_X)."
+ },
+ "refit": {
+  "status": "VALIDATED 2026-11-13 (inference-testing-04, tag 6349a0): measured ChArUco lenses on all three cameras; wrist mounts fitted to real gripper-jaw masks; overhead mount refit to real moving-arm masks (pose composed in the mount frame); arm kinematics in actuators/kinematics_refit.json. Gate = held-out live-run cube agreement in the wrist views (see 'gate').",
+  "rig_file": "cameras/refit/so101_camera_rig.refit_2026-11-13_6349a0.json",
+  "render_requirement": "hide the wrist camera mount geoms in WRIST renders only (pi_sim PI_SIM_HIDE_CAM_MOUNTS=1). Move only geoms that are drawn at all (groups 0-2) to the hidden group: the <side>_camera_box1/2 are red group-3 COLLISION boxes and must stay invisible in every view (warprm's hook moved them and drew them in the overhead until the 2026-11-13 fix; the shared sim folder's hook was already right).",
+  "gate": {
+   "left": {
+    "live_heldout": {
+     "agreement": 33.0,
+     "centroid_px448": 22.97,
+     "centroid_px640": 27.98,
+     "area_ratio": 1.1,
+     "n_scored": 95,
+     "both": 84,
+     "sim_only": 6,
+     "real_only": 5,
+     "runs": 8,
+     "agreement_90ci": [
+      28.6,
+      37.9
+     ]
+    },
+    "baseline_live": {
+     "agreement": 8.1,
+     "centroid_px448": 72.1,
+     "centroid_px640": 82.7,
+     "area_ratio": 1.77,
+     "n_scored": 90,
+     "both": 49,
+     "sim_only": 1,
+     "real_only": 40,
+     "runs": 8,
+     "agreement_90ci": [
+      6.4,
+      9.9
+     ]
+    }
+   },
+   "right": {
+    "live_heldout": {
+     "agreement": 33.8,
+     "centroid_px448": 20.62,
+     "centroid_px640": 25.16,
+     "area_ratio": 1.31,
+     "n_scored": 41,
+     "both": 31,
+     "sim_only": 3,
+     "real_only": 7,
+     "runs": 8,
+     "agreement_90ci": [
+      27.4,
+      40.3
+     ]
+    },
+    "baseline_live": {
+     "agreement": 25.4,
+     "centroid_px448": 26.95,
+     "centroid_px640": 33.47,
+     "area_ratio": 1.37,
+     "n_scored": 41,
+     "both": 25,
+     "sim_only": 3,
+     "real_only": 13,
+     "runs": 8,
+     "agreement_90ci": [
+      19.9,
+      29.8
+     ]
+    }
+   }
+  },
+  "overhead": {
+   "parent_body": "world",
+   "pos": [
+    0.003913,
+    -0.183618,
+    0.525584
+   ],
+   "quat_wxyz": [
+    0.976579,
+    0.2149644,
+    0.009231,
+    0.0001769
+   ],
+   "intrinsics": {
+    "fx": 544.6,
+    "fy": 544.6,
+    "cx": 282.4,
+    "cy": 242.9
+   },
+   "distortion": [
+    -0.450325,
+    0.276115,
+    -0.00024,
+    -8e-05,
+    -0.10492
+   ],
+   "calibration_status": "2026-11-13 inference-testing-04 (round 2): measured lens + mount pose fitted to the 11-10 SAM masks of the moving arm (deployed joint offsets), pi_sim render path: held-out IoU 0.507 (median 0.461)"
+  },
+  "left_wrist": {
+   "parent_body": "left_camera_mount",
+   "pos": [
+    0.004535,
+    0.053508,
+    -0.040892
+   ],
+   "quat_wxyz": [
+    0.9678177,
+    -0.2514075,
+    0.0077037,
+    -0.0079882
+   ],
+   "intrinsics": {
+    "fx": 540.27,
+    "fy": 538.2,
+    "cx": 310.08,
+    "cy": 250.53
+   },
+   "distortion": [
+    -0.4471,
+    0.26909,
+    -0.00079,
+    0.0006,
+    -0.10492
+   ],
+   "calibration_status": "measured ChArUco lens (robots/so101/calibration) + mount pose fitted to real jaw SAM masks 2026-11-13: held-out jaw IoU 0.815"
+  },
+  "right_wrist": {
+   "parent_body": "right_camera_mount",
+   "pos": [
+    0.017747,
+    0.056277,
+    -0.034167
+   ],
+   "quat_wxyz": [
+    0.9612192,
+    -0.2534807,
+    0.0751479,
+    -0.0784721
+   ],
+   "intrinsics": {
+    "fx": 546.66,
+    "fy": 544.74,
+    "cx": 331.84,
+    "cy": 246.28
+   },
+   "distortion": [
+    -0.45355,
+    0.28314,
+    0.00031,
+    -0.00076,
+    -0.10492
+   ],
+   "calibration_status": "2026-11-13 inference-testing-04: measured ChArUco lens + mount refit to TODAY's (11-13) SAM jaw outlines: held-out jaw IoU 0.872 (11-10 mount: 0.859)"
+  },
+  "gate_round5_kin5": {
+   "tag": "31a703",
+   "what": "same cameras as 6349a0; arm kinematics refit with the jaw-aware fast projector (actuators/kinematics_refit.json)",
+   "left": {
+    "agreement": 33.4,
+    "agreement_90ci": [
+     30.2,
+     36.8
+    ],
+    "centroid_px448": 20.44,
+    "centroid_px640": 23.83,
+    "area_ratio": 1.25,
+    "n_scored": 93
+   },
+   "right": {
+    "agreement": 34.7,
+    "agreement_90ci": [
+     26.9,
+     41.5
+    ],
+    "centroid_px448": 17.58,
+    "centroid_px640": 22.75,
+    "area_ratio": 1.25,
+    "n_scored": 42
+   },
+   "round4_same_cameras": {
+    "left": {
+     "agreement": 33.0,
+     "agreement_90ci": [
+      28.6,
+      37.9
+     ],
+     "centroid_px448": 22.97
+    },
+    "right": {
+     "agreement": 33.8,
+     "agreement_90ci": [
+      27.4,
+      40.3
+     ],
+     "centroid_px448": 20.62
+    }
+   }
+  },
+  "gate_round6_bb1b28": {
+   "tag": "bb1b28",
+   "what": "same cameras as 6349a0; joint offsets only (pedestal shifts pinned at 0), mean of the two half fits",
+   "heldout_half_fits": {
+    "left": {
+     "agreement": 31.3,
+     "agreement_90ci": [
+      28.3,
+      34.4
+     ],
+     "centroid_px448": 22.43,
+     "centroid_px640": 26.48,
+     "area_ratio": 1.3,
+     "n_scored": 93
+    },
+    "right": {
+     "agreement": 35.1,
+     "agreement_90ci": [
+      27.2,
+      41.8
+     ],
+     "centroid_px448": 16.13,
+     "centroid_px640": 19.11,
+     "area_ratio": 1.35,
+     "n_scored": 42
+    }
+   },
+   "deployed_mean_offsets_all_live_frames": {
+    "left": {
+     "agreement": 32.6,
+     "agreement_90ci": [
+      29.2,
+      36.6
+     ],
+     "centroid_px448": 21.09,
+     "centroid_px640": 24.37,
+     "area_ratio": 1.3,
+     "n_scored": 93
+    },
+    "right": {
+     "agreement": 38.1,
+     "agreement_90ci": [
+      31.0,
+      43.8
+     ],
+     "centroid_px448": 14.21,
+     "centroid_px640": 17.98,
+     "area_ratio": 1.34,
+     "n_scored": 41
+    }
+   },
+   "token_gap_recent_frames": "11-12 live frames, MolmoAct2 vision tokens, median per-frame gap vs the old rig: new cameras alone -11% overall (overhead -3%, left wrist -21%, right wrist -5%); with these joint offsets -8% (overhead -5%, left -12%, right -4%)."
+  }
+ },
+ "best_so_far": {
+  "status": "NOT VALIDATED, best available 2026-11-13 (inference-testing-04). Kept separate from 'refit' so nothing trains on it by accident. Each wrist entry is a CONSISTENT lens+pose pair: these poses were fitted with these (estimated) lenses, not the measured ones.",
+  "rig_file": "cameras/candidates/so101_camera_rig.best_so_far_2026-11-13.json",
+  "render_requirement": "hide the wrist camera mount geoms (lens, pcb, camera boxes) in every render",
+  "left_wrist": {
+   "parent_body": "left_camera_mount",
+   "pos": [
+    0.006926,
+    0.055684,
+    -0.041849
+   ],
+   "quat_wxyz": [
+    0.9674878,
+    -0.2525189,
+    -0.0027015,
+    -0.0139371
+   ],
+   "lens_used": {
+    "intrinsics": {
+     "fx": 461.25,
+     "fy": 461.25,
+     "cx": 320.0,
+     "cy": 240.0
+    },
+    "distortion": [
+     -0.3217420721262354,
+     0.14097619260777183,
+     0.0,
+     0.0,
+     -0.03359948828738613
+    ]
+   },
+   "scores": {
+    "jaw_iou_heldout_clean": 90.3,
+    "jaw_iou_heldout_median": 91.9,
+    "cube_check_capture_051841_heldout_rendered_with_arm_correction": {
+     "agreement": 52.8,
+     "centroid_px_448": 23.0,
+     "area_ratio": 1.02
+    },
+    "cube_check_still_frames_only": {
+     "agreement": 70.7,
+     "centroid_px_448": 11.8,
+     "area_ratio": 1.0,
+     "n": 9
+    }
+   }
+  },
+  "right_wrist": {
+   "parent_body": "right_camera_mount",
+   "pos": [
+    0.01114,
+    0.058725,
+    -0.038945
+   ],
+   "quat_wxyz": [
+    0.961275,
+    -0.2637938,
+    0.0735388,
+    -0.0309066
+   ],
+   "lens_used": {
+    "intrinsics": {
+     "fx": 501.815,
+     "fy": 501.815,
+     "cx": 320.025,
+     "cy": 239.384
+    },
+    "distortion": [
+     -0.33219844712361707,
+     0.1549953772479666,
+     0.0,
+     0.0,
+     -0.04178353038186243
+    ]
+   },
+   "scores": {
+    "jaw_iou_heldout_clean": 80.9,
+    "jaw_iou_heldout_median": 89.5,
+    "cube_check_capture_051100_heldout_rendered_no_arm_correction": {
+     "agreement": 13.8,
+     "centroid_px_448": 68.1,
+     "area_ratio": 1.19
+    },
+    "cube_check_capture_050056_clean_rendered_no_arm_correction": {
+     "agreement": 27.3,
+     "centroid_px_448": 32.0,
+     "area_ratio": 1.28
+    }
+   },
+   "note": "the right cube check is weak; an arm correction fitted on 051100 did not carry over to 050056 (27.3 -> 16.4), so none is applied. b5's right fit (b5_rig_right_v4) scores the cube better (59-60) but the jaws only 60.2, i.e. the camera moved to an unphysical place."
+  }
+ }
+}
