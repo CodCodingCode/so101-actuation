@@ -1,0 +1,32 @@
+{
+ "status": "VALIDATED 2026-11-13 (tag 6349a0). sim joint = logged reading + joint_offsets_deg (on top of rig.json joint_offsets_deg, i.e. the runner's current units); pedestal_shift_cm added to model.body_pos of <side>_pedestal (world frame). Same format as sim-e5's rig_cube_check --kinematics and pi_sim PI_SIM_KINEMATICS.",
+ "left": {
+  "joint_offsets_deg": [
+   -2.33,
+   -3.327,
+   -0.697,
+   -0.106,
+   -1.345
+  ],
+  "pedestal_shift_cm": [
+   -0.882,
+   -0.158,
+   0.768
+  ]
+ },
+ "right": {
+  "joint_offsets_deg": [
+   1.007,
+   -1.067,
+   2.894,
+   4.054,
+   1.26
+  ],
+  "pedestal_shift_cm": [
+   0.777,
+   -0.198,
+   0.816
+  ]
+ },
+ "rig_file": "cameras/refit/so101_camera_rig.refit_2026-11-13_6349a0.json"
+}

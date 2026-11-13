@@ -22,8 +22,12 @@ Fixing the motor side made the same task work on the real arms on 2026-11-11. Th
 | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `so101_profile.json`              | Per arm and joint: real range (read from the servos, offsets included), servo registers (P/D/I/deadband), torque limits, **measured shortfall** at three poses, the rig's joint offsets, ports and camera ids, and default tracking settings                                          |
 | `motor_model/so101_dynamics.json` | MuJoCo servo model fitted to the real arms on 2026-11-10: kp, kv, force limit, friction, armature, time constant. Joint RMS dropped from 1.79° to 0.52° (0.54° on the held-out right arm). It underestimates the shortfall at full reach: about 1° in sim vs 2.6° real on elbow_flex. |
-| `cameras/so101_camera_rig.json`   | **The calibrated camera rig in use on the robot** (identical hash to the laptop's copy): overhead and both wrist cameras, with intrinsics (fx/fy/cx/cy), OpenCV k1/k2 distortion and poses. Load with `pi_sim`'s `camera_rig=` or read it directly.                                   |
-| `cameras/history/`                | Earlier camera fits, kept for reference. **Don't use them for new work.** The `sim_assets_*` copy has un-fitted wrist cameras.                                                                                                                                                        |
+| `cameras/so101_camera_rig.json` | **The camera rig to use: calibration 2026-11-13, tag `bb1b28`.** Overhead and both wrist cameras, with ChArUco-measured lenses (fx/fy/cx/cy, OpenCV k1/k2/p1/p2/k3) and refitted poses. It carries `"hide_wrist_mounts": true`: wrist renders must hide the wrist camera mount geoms (see below). Load with `pi_sim`'s `camera_rig=` or read it directly. |
+| `cameras/refit/so101_camera_rig.refit_2026-11-13_6349a0.json` | The same rig, byte-identical to the validated file. Its hash, together with the kinematics file, gives the calibration tag. |
+| `cameras/lens_measured_2026-11-13.json` | The ChArUco lens measurements (640×480, all three cameras) |
+| `cameras/placement.json` | Camera poses and lenses for each calibration round, with provenance and gate scores |
+| `kinematics/so101_kinematics_refit.json` | Per-arm joint offsets fitted on 2026-11-13: sim angle = logged reading + offset, on top of the rig offsets in `so101_profile.json`. Pedestal shifts are 0. Earlier rounds are in `kinematics/history/`. |
+| `cameras/history/` | Earlier camera fits, including the 2026-11-10 rig that was in use until 2026-11-13. **Don't use them for new work.** The `sim_assets_*` copy has un-fitted wrist cameras. |
 | `tracking.py`                     | Sim helpers (`apply_to_mujoco`, `apply_motor_model`), servo register access (`read_servo_profile`, `stiffen`, `restore`), and `TrackingCorrector`                                                                                                                                     |
 
 ### Measured shortfall
@@ -37,6 +41,36 @@ Degrees, commanded minus measured, once the target has been still. Positive mean
 | Hold (15 g cube, 4 cm up) | 0.9, **−2.1**, **−2.6**, 0.1, 0.3  | −1.1, **−3.2**, **−2.4**, 0.2, −0.2 |
 
 Joint order: pan, lift, elbow, wrist flex, wrist roll. Elbow_flex is consistently about 2.5° short. Shoulder_lift sags under load.
+
+## Camera and kinematics calibration, 2026-11-13 (tag `bb1b28`)
+
+**What changed.**
+
+- **Lenses.** Measured with a ChArUco board on all three InnoMaker U20CAM-1080P-S1 cameras at 640×480 (about 70° horizontal). The previous rig had the wrong distortion sign on the wrist lenses (pincushion instead of the real barrel) and an overhead focal length of 612.6 instead of 544.6.
+- **Mounts.** Refit with those lenses: the wrist cameras to real gripper-jaw outlines (SAM masks), the overhead to real moving-arm outlines.
+- **Joint offsets.** Refit on torque-on live runs, from where the wrist cameras see the cube. The arm bases stay at their nominal positions.
+
+**Scores.** Cube agreement in the wrist views on held-out live runs (0–100, sim vs real masks):
+
+| Wrist | previous rig | this calibration |
+| --- | --- | --- |
+| left | 8.1 | 31.3 |
+| right | 25.4 | 35.1 |
+
+In MolmoAct2's vision tokens, on live frames from a later session, sim renders are 11% closer to the real frames than with the previous rig (21% for the left wrist).
+
+**Using it.**
+
+- **Hide the wrist mounts in wrist renders.** With the measured wide lenses, the sim wrist camera sits inside its modelled housing, which the real camera never sees.
+  - Hide only geoms that are drawn at all (groups 0–2), and only in the wrist views. The overhead still sees the mounts.
+  - The red `<side>_camera_box1/2` are group-3 collision boxes. Keep them invisible everywhere: moving them into a drawn group puts red blobs on both grippers in the overhead view.
+- **Joint offsets belong at the real↔sim mapping.** Add them to the measured joints going in and subtract them from commands going out. Sims use the nominal arm bases.
+
+**Lessons.**
+
+- Don't fit arm-base (pedestal) shifts from the wrist views alone. A round that did fixed the wrist views but moved the arm bases about 1 cm as the overhead sees them: the overhead arm outlines' agreement with real masks dropped from 0.561 to 0.460. Joint offsets alone keep the wrist gain and leave the overhead unchanged (0.560).
+- The remaining ~20 px wrist-view offset grows with arm speed (motion blur in 20 Hz frames). It isn't a frame/joint timing lag, a camera aim error or the cube placement. Better test data would be still poses with the motors on.
+
 
 ## Use it in a sim or planner
 
